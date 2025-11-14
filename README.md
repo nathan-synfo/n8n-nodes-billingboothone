@@ -1,6 +1,6 @@
 # n8n-nodes-billingboothone
 
-This is an n8n community node for [Billing Booth One](https://billingbooth.app).
+This is an n8n community node for [Billing Booth One](https://www.billingbooth.com/).
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -123,7 +123,7 @@ To use this node, you need Billing Booth One API credentials:
 ### Setting up credentials
 
 1. In n8n, go to **Credentials > New**
-2. Search for "Billing Booth One"
+2. Search for "Billing Booth One API"
 3. Enter your credentials:
    - **Email**: Your Billing Booth One account email
    - **Password**: Your account password
@@ -132,6 +132,8 @@ To use this node, you need Billing Booth One API credentials:
 5. Click **Save**
 
 The node automatically handles authentication and token caching (55-minute expiry).
+
+This node does **not** support the 2FA authentication method.
 
 ## Compatibility
 
@@ -186,13 +188,6 @@ npm run build        # Build the node
 - **Auto-generated Properties** - Generated from OpenAPI spec
 - **Token Caching** - Automatic authentication token management
 - **Binary File Support** - Multipart form-data uploads for CDR and service files
-
-### Architecture Notes
-
-- **Authentication** is handled entirely by the credentials file with built-in testing
-- **Resource routing** uses declarative routing from operation definitions
-- **Token management** is centralized in `utils/helpers.ts`
-- **Properties are generated** from the Billing Booth One OpenAPI specification
 
 ## Resources
 
