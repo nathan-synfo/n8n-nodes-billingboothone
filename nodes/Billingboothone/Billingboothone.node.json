@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-billingboothone",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Sales", "Finance & Accounting"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/nathan-synfo/n8n-nodes-billingboothone#credentials"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/nathan-synfo/n8n-nodes-billingboothone"
+			}
+		]
+	}
+}
