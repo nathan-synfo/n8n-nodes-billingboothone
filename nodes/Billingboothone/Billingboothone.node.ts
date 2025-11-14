@@ -155,7 +155,15 @@ export class Billingboothone implements INodeType {
 				}
 
 				// Build request options
-				const requestOptions: any = {
+				const requestOptions: {
+					method: IHttpRequestMethods;
+					url: string;
+					headers: { [key: string]: string };
+					resolveWithFullResponse: boolean;
+					json?: boolean;
+					qs?: IDataObject;
+					body?: unknown;
+				} = {
 					method,
 					url: `${baseUrl}${endpoint}`,
 					headers: {
