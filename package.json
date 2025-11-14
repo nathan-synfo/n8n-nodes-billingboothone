@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-billingboothone",
+  "name": "@synfo/n8n-nodes-billingboothone",
   "version": "0.1.0",
   "description": "n8n community node for Billing Booth One API - comprehensive billing and customer management",
   "keywords": [
