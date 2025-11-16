@@ -184,7 +184,7 @@ The **Billing Booth One** node allows your workflows to start automatically when
 #### Setting Up a Webhook Trigger
 
 1. Add the **Billing Booth One** node as a trigger on your workflow.
-2. Under triggers, select **Billing Booth One Trigger**
+2. Under triggers, select **On New Billing Booth One Event**
 3. Select your Billing Booth One API credentials
 4. Choose which **Events** to subscribe to:
    - **Invoices** - Trigger on invoice events (created, updated, sent, etc.)
