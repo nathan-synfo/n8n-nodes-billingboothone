@@ -177,6 +177,43 @@ This node does **not** support the 2FA authentication method.
 5. Set **Binary Property** to the name of your binary property (usually "data")
 6. Add query parameters like `supplier_id` in **Additional Fields**
 
+### Webhook Trigger
+
+The **BillingBoothOne Trigger** node allows your workflows to start automatically when events occur in Billing Booth One.
+
+#### Setting Up a Webhook Trigger
+
+1. Add the **BillingBoothOne Trigger** node to your workflow
+2. Select your Billing Booth One API credentials
+3. Choose which **Events** to subscribe to:
+   - **Invoices** - Trigger on invoice events (created, updated, sent, etc.)
+   - **Payments** - Trigger on payment events (received, failed, etc.)
+   - **Mandates** - Trigger on mandate events (created, cancelled, etc.)
+   - **Customers** - Trigger on customer events (created, updated, etc.)
+   - **Ledger** - Trigger on ledger events
+   - **Audit** - Trigger on audit events
+   - **Credit Notes** - Trigger on credit note events
+4. Activate your workflow
+
+When you activate the workflow, the trigger node will:
+- Automatically register a webhook endpoint with Billing Booth One
+- Generate a secure secret for signature verification
+- Start receiving events for your selected event types
+
+When you deactivate the workflow, the webhook is automatically removed from Billing Booth One.
+
+#### Webhook Security
+
+All webhooks are signed with HMAC-SHA256 signatures for security. The trigger node automatically verifies signatures to ensure webhook authenticity.
+
+#### Example Workflow: Process New Invoices
+
+1. **BillingBoothOne Trigger** - Subscribe to "Invoices" events
+2. **Filter** node - Only process "invoice.created" events
+3. **Billing Booth One** node - Get invoice details
+4. **Send Email** - Notify accounting team
+5. **HTTP Request** - Update external accounting system
+
 ### Building
 
 ```bash
@@ -201,6 +238,12 @@ npm run build        # Build the node
 [MIT](LICENSE.md)
 
 ## Version History
+
+### 0.2.0
+
+- **New Feature**: Webhook Trigger node for receiving real-time events from Billing Booth One
+- Support for all webhook trigger types
+- Webhook subscirptions are individually selectable
 
 ### 0.1.3
 

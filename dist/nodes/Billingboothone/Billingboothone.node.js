@@ -125,7 +125,6 @@ class Billingboothone {
                         Authorization: `Bearer ${accessToken}`,
                         Accept: 'application/json',
                     },
-                    resolveWithFullResponse: false,
                 };
                 if (isBinaryUpload && binaryData) {
                     const binaryBuffer = await this.helpers.getBinaryDataBuffer(i, binaryPropertyName);
@@ -141,7 +140,9 @@ class Billingboothone {
                     requestOptions.json = false;
                 }
                 else {
-                    requestOptions.headers['Content-Type'] = 'application/json';
+                    if (requestOptions.headers) {
+                        requestOptions.headers['Content-Type'] = 'application/json';
+                    }
                     requestOptions.json = true;
                 }
                 if (Object.keys(qs).length > 0) {

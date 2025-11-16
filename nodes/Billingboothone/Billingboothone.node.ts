@@ -6,6 +6,7 @@ import {
 	NodeOperationError,
 	IDataObject,
 	IHttpRequestMethods,
+	IHttpRequestOptions,
 } from 'n8n-workflow';
 import { allResourceFields } from './resources';
 import { getAccessToken, cleanBaseUrl, resourceSelector, buildMultipartFormData } from './utils';
@@ -155,22 +156,13 @@ export class Billingboothone implements INodeType {
 				}
 
 				// Build request options
-				const requestOptions: {
-					method: IHttpRequestMethods;
-					url: string;
-					headers: { [key: string]: string };
-					resolveWithFullResponse: boolean;
-					json?: boolean;
-					qs?: IDataObject;
-					body?: unknown;
-				} = {
+				const requestOptions: IHttpRequestOptions = {
 					method,
 					url: `${baseUrl}${endpoint}`,
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
 						Accept: 'application/json',
 					},
-					resolveWithFullResponse: false, // Only return body, not full response
 				};
 
 				// Handle binary file upload with multipart/form-data
@@ -193,7 +185,9 @@ export class Billingboothone implements INodeType {
 					requestOptions.json = false;
 				} else {
 					// Regular JSON request
-					requestOptions.headers['Content-Type'] = 'application/json';
+					if (requestOptions.headers) {
+						requestOptions.headers['Content-Type'] = 'application/json';
+					}
 					requestOptions.json = true;
 				}
 
