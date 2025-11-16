@@ -17,7 +17,7 @@ import type { WebhookStaticData } from './utils/webhooks/types';
 
 export class BillingboothoneTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'BillingBoothOne Trigger',
+		displayName: 'Billing Booth One Webhook',
 		name: 'billingboothoneTrigger',
 		icon: 'file:billingboothone.svg',
 		group: ['trigger'],
@@ -25,7 +25,7 @@ export class BillingboothoneTrigger implements INodeType {
 		subtitle: 'On Webhook Event',
 		description: 'Starts the workflow when BillingBoothOne events occur',
 		defaults: {
-			name: 'BillingBoothOne Trigger',
+			name: 'Billing Booth One Webhook',
 		},
 		inputs: [],
 		outputs: ['main'],
