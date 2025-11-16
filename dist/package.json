@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-billingboothone",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "n8n community node for Billing Booth One API - comprehensive billing and customer management",
     "keywords": [
         "n8n-community-node-package",

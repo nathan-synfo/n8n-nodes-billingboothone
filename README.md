@@ -202,6 +202,20 @@ npm run build        # Build the node
 
 ## Version History
 
+### 0.1.3
+
+- Remove duplicate metadata resource
+- Remove unnecessary Home resource
+- Internal fixes for properties generation to better support future API updates
+
+### 0.1.2
+
+- Fix for additional fields collections
+
+### 0.1.1
+
+- Fix issue with binary file upload
+
 ### 0.1.0
 - Initial release
 - Support for all API resources
