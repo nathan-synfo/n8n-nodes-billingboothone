@@ -180,50 +180,6 @@ export const CDRFields: INodeProperties[] = [
     }
   },
   {
-    "displayName": "Binary Property",
-    "name": "binaryPropertyName",
-    "type": "string",
-    "default": "data",
-    "required": true,
-    "description": "Name of the binary property containing the file to upload",
-    "displayOptions": {
-      "show": {
-        "resource": [
-          "CDR"
-        ],
-        "operation": [
-          "Upload Cdr"
-        ]
-      }
-    }
-  },
-  {
-    "displayName": "Supplier ID",
-    "name": "supplier_id",
-    "type": "number",
-    "default": 1,
-    "required": true,
-    "placeholder": "Enter supplier ID",
-    "description": "The supplier ID (required for file upload)",
-    "displayOptions": {
-      "show": {
-        "resource": [
-          "CDR"
-        ],
-        "operation": [
-          "Upload Cdr"
-        ]
-      }
-    },
-    "routing": {
-      "send": {
-        "type": "query",
-        "property": "supplier_id",
-        "value": "={{ $value }}"
-      }
-    }
-  },
-  {
     "displayName": "DELETE /cdr",
     "name": "operation",
     "type": "notice",
@@ -371,6 +327,49 @@ export const CDRFields: INodeProperties[] = [
         ],
         "operation": [
           "Get CDR Details"
+        ]
+      }
+    }
+  },
+  {
+    "displayName": "Binary Property",
+    "name": "binaryPropertyName",
+    "type": "string",
+    "default": "data",
+    "required": true,
+    "description": "Name of the binary property containing the file to upload",
+    "displayOptions": {
+      "show": {
+        "resource": [
+          "CDR"
+        ],
+        "operation": [
+          "Upload Cdr"
+        ]
+      }
+    }
+  },
+  {
+    "displayName": "Supplier Id",
+    "name": "supplier_id",
+    "description": "Supplier",
+    "default": 1,
+    "type": "number",
+    "routing": {
+      "send": {
+        "type": "query",
+        "property": "supplier_id",
+        "value": "={{ $value }}",
+        "propertyInDotNotation": false
+      }
+    },
+    "displayOptions": {
+      "show": {
+        "resource": [
+          "CDR"
+        ],
+        "operation": [
+          "Upload Cdr"
         ]
       }
     }

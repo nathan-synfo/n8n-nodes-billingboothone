@@ -139,10 +139,6 @@ export const resourceSelector: INodeProperties = {
       "value": "General"
     },
     {
-      "name": "Home",
-      "value": "Home"
-    },
-    {
       "name": "Integration Logs",
       "value": "Integration Logs"
     },
@@ -161,10 +157,6 @@ export const resourceSelector: INodeProperties = {
     {
       "name": "Ledgers",
       "value": "Ledgers"
-    },
-    {
-      "name": "Metadata",
-      "value": "Metadata"
     },
     {
       "name": "Metadata",

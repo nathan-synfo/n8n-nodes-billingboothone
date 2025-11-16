@@ -31,7 +31,6 @@ import { executeEmailSettingsOperation } from './EmailSettings';
 import { executeEndpointsOperation } from './Endpoints';
 import { executeEventsOperation } from './Events';
 import { executeGeneralOperation } from './General';
-import { executeHomeOperation } from './Home';
 import { executeIntegrationLogsOperation } from './IntegrationLogs';
 import { executeIntegrationsOperation } from './Integrations';
 import { executeInvoiceTemplateOperation } from './InvoiceTemplate';
@@ -89,7 +88,6 @@ export { EmailSettingsFields, executeEmailSettingsOperation } from './EmailSetti
 export { EndpointsFields, executeEndpointsOperation } from './Endpoints';
 export { EventsFields, executeEventsOperation } from './Events';
 export { GeneralFields, executeGeneralOperation } from './General';
-export { HomeFields, executeHomeOperation } from './Home';
 export { IntegrationLogsFields, executeIntegrationLogsOperation } from './IntegrationLogs';
 export { IntegrationsFields, executeIntegrationsOperation } from './Integrations';
 export { InvoiceTemplateFields, executeInvoiceTemplateOperation } from './InvoiceTemplate';
@@ -147,7 +145,6 @@ export declare const resourceOperations: {
     Endpoints: typeof executeEndpointsOperation;
     Events: typeof executeEventsOperation;
     General: typeof executeGeneralOperation;
-    Home: typeof executeHomeOperation;
     IntegrationLogs: typeof executeIntegrationLogsOperation;
     Integrations: typeof executeIntegrationsOperation;
     InvoiceTemplate: typeof executeInvoiceTemplateOperation;

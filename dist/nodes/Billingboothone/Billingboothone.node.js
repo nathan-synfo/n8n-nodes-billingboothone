@@ -150,17 +150,6 @@ class Billingboothone {
                 if (body && Object.keys(body).length > 0 && !isBinaryUpload) {
                     requestOptions.body = body;
                 }
-                this.logger.info('=== REQUEST DEBUG ===');
-                this.logger.info(`Method: ${method}`);
-                this.logger.info(`URL: ${requestOptions.url}`);
-                this.logger.info(`Query params: ${JSON.stringify(qs)}`);
-                this.logger.info(`Headers: ${JSON.stringify(requestOptions.headers)}`);
-                this.logger.info(`Is binary upload: ${isBinaryUpload}`);
-                this.logger.info(`Body type: ${typeof requestOptions.body}`);
-                if (!isBinaryUpload && requestOptions.body) {
-                    this.logger.info(`Body: ${JSON.stringify(requestOptions.body)}`);
-                }
-                this.logger.info('====================');
                 const responseData = await this.helpers.httpRequest(requestOptions);
                 const jsonData = typeof responseData === 'object' ? responseData : { data: responseData };
                 returnData.push({

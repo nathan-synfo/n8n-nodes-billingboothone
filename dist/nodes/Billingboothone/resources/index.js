@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomersFields = exports.executeCustomerGroupsOperation = exports.CustomerGroupsFields = exports.executeCustomerCommissionsOperation = exports.CustomerCommissionsFields = exports.executeCustomerAccessSettingOperation = exports.CustomerAccessSettingFields = exports.executeCustomerAccessPaymentsOperation = exports.CustomerAccessPaymentsFields = exports.executeCustomerAccessBannerOperation = exports.CustomerAccessBannerFields = exports.executeCustomerAccessOperation = exports.CustomerAccessFields = exports.executeCreditNotesOperation = exports.CreditNotesFields = exports.executeCostCentresOperation = exports.CostCentresFields = exports.executeContactsOperation = exports.ContactsFields = exports.executeCommissionPlansOperation = exports.CommissionPlansFields = exports.executeCLITypesOperation = exports.CLITypesFields = exports.executeCLIOperation = exports.CLIFields = exports.executeChargesOperation = exports.ChargesFields = exports.executeChargeImportsOperation = exports.ChargeImportsFields = exports.executeCDRSettingsOperation = exports.CDRSettingsFields = exports.executeCDRAnalyticsOperation = exports.CDRAnalyticsFields = exports.executeCDROperation = exports.CDRFields = exports.executeCategoriesOperation = exports.CategoriesFields = exports.executeBundlesOperation = exports.BundlesFields = exports.executeBillingRunOperation = exports.BillingRunFields = exports.executeAutoCollectionHistoryOperation = exports.AutoCollectionHistoryFields = exports.executeAutoCollectionEndpointsOperation = exports.AutoCollectionEndpointsFields = exports.executeAuditEntryOperation = exports.AuditEntryFields = exports.executeAccountOperation = exports.AccountFields = exports.allResourceFields = void 0;
-exports.ServiceChargesFields = exports.executeRolesOperation = exports.RolesFields = exports.executeRevenueOperation = exports.RevenueFields = exports.executeRegionsOperation = exports.RegionsFields = exports.executeProductsOperation = exports.ProductsFields = exports.executeProductPricesOperation = exports.ProductPricesFields = exports.executeProductOperation = exports.ProductFields = exports.executePriceAdjustmentsOperation = exports.PriceAdjustmentsFields = exports.executePaymentsOperation = exports.PaymentsFields = exports.executeOrganisationsOperation = exports.OrganisationsFields = exports.executeNotesOperation = exports.NotesFields = exports.executeMetadataOperation = exports.MetadataFields = exports.executeLedgersOperation = exports.LedgersFields = exports.executeInvoicesOperation = exports.InvoicesFields = exports.executeInvoiceTemplateOperation = exports.InvoiceTemplateFields = exports.executeIntegrationsOperation = exports.IntegrationsFields = exports.executeIntegrationLogsOperation = exports.IntegrationLogsFields = exports.executeHomeOperation = exports.HomeFields = exports.executeGeneralOperation = exports.GeneralFields = exports.executeEventsOperation = exports.EventsFields = exports.executeEndpointsOperation = exports.EndpointsFields = exports.executeEmailSettingsOperation = exports.EmailSettingsFields = exports.executeDestinationsOperation = exports.DestinationsFields = exports.executeDestinationGroupsOperation = exports.DestinationGroupsFields = exports.executeDataRetentionOperation = exports.DataRetentionFields = exports.executeCustomersOperation = void 0;
-exports.resourceOperations = exports.executeUsersOperation = exports.UsersFields = exports.executeTimeSchedulesOperation = exports.TimeSchedulesFields = exports.executeTariffsOperation = exports.TariffsFields = exports.executeTagsOperation = exports.TagsFields = exports.executeSupportAttachmentFilesOperation = exports.SupportAttachmentFilesFields = exports.executeSuppliersOperation = exports.SuppliersFields = exports.executeServiceFilesOperation = exports.ServiceFilesFields = exports.executeServiceChargesOperation = void 0;
+exports.ServiceFilesFields = exports.executeServiceChargesOperation = exports.ServiceChargesFields = exports.executeRolesOperation = exports.RolesFields = exports.executeRevenueOperation = exports.RevenueFields = exports.executeRegionsOperation = exports.RegionsFields = exports.executeProductsOperation = exports.ProductsFields = exports.executeProductPricesOperation = exports.ProductPricesFields = exports.executeProductOperation = exports.ProductFields = exports.executePriceAdjustmentsOperation = exports.PriceAdjustmentsFields = exports.executePaymentsOperation = exports.PaymentsFields = exports.executeOrganisationsOperation = exports.OrganisationsFields = exports.executeNotesOperation = exports.NotesFields = exports.executeMetadataOperation = exports.MetadataFields = exports.executeLedgersOperation = exports.LedgersFields = exports.executeInvoicesOperation = exports.InvoicesFields = exports.executeInvoiceTemplateOperation = exports.InvoiceTemplateFields = exports.executeIntegrationsOperation = exports.IntegrationsFields = exports.executeIntegrationLogsOperation = exports.IntegrationLogsFields = exports.executeGeneralOperation = exports.GeneralFields = exports.executeEventsOperation = exports.EventsFields = exports.executeEndpointsOperation = exports.EndpointsFields = exports.executeEmailSettingsOperation = exports.EmailSettingsFields = exports.executeDestinationsOperation = exports.DestinationsFields = exports.executeDestinationGroupsOperation = exports.DestinationGroupsFields = exports.executeDataRetentionOperation = exports.DataRetentionFields = exports.executeCustomersOperation = void 0;
+exports.resourceOperations = exports.executeUsersOperation = exports.UsersFields = exports.executeTimeSchedulesOperation = exports.TimeSchedulesFields = exports.executeTariffsOperation = exports.TariffsFields = exports.executeTagsOperation = exports.TagsFields = exports.executeSupportAttachmentFilesOperation = exports.SupportAttachmentFilesFields = exports.executeSuppliersOperation = exports.SuppliersFields = exports.executeServiceFilesOperation = void 0;
 const Account_1 = require("./Account");
 const AuditEntry_1 = require("./AuditEntry");
 const AutoCollectionEndpoints_1 = require("./AutoCollectionEndpoints");
@@ -35,7 +35,6 @@ const EmailSettings_1 = require("./EmailSettings");
 const Endpoints_1 = require("./Endpoints");
 const Events_1 = require("./Events");
 const General_1 = require("./General");
-const Home_1 = require("./Home");
 const IntegrationLogs_1 = require("./IntegrationLogs");
 const Integrations_1 = require("./Integrations");
 const InvoiceTemplate_1 = require("./InvoiceTemplate");
@@ -93,7 +92,6 @@ exports.allResourceFields = [
     ...Endpoints_1.EndpointsFields,
     ...Events_1.EventsFields,
     ...General_1.GeneralFields,
-    ...Home_1.HomeFields,
     ...IntegrationLogs_1.IntegrationLogsFields,
     ...Integrations_1.IntegrationsFields,
     ...InvoiceTemplate_1.InvoiceTemplateFields,
@@ -215,9 +213,6 @@ Object.defineProperty(exports, "executeEventsOperation", { enumerable: true, get
 var General_2 = require("./General");
 Object.defineProperty(exports, "GeneralFields", { enumerable: true, get: function () { return General_2.GeneralFields; } });
 Object.defineProperty(exports, "executeGeneralOperation", { enumerable: true, get: function () { return General_2.executeGeneralOperation; } });
-var Home_2 = require("./Home");
-Object.defineProperty(exports, "HomeFields", { enumerable: true, get: function () { return Home_2.HomeFields; } });
-Object.defineProperty(exports, "executeHomeOperation", { enumerable: true, get: function () { return Home_2.executeHomeOperation; } });
 var IntegrationLogs_2 = require("./IntegrationLogs");
 Object.defineProperty(exports, "IntegrationLogsFields", { enumerable: true, get: function () { return IntegrationLogs_2.IntegrationLogsFields; } });
 Object.defineProperty(exports, "executeIntegrationLogsOperation", { enumerable: true, get: function () { return IntegrationLogs_2.executeIntegrationLogsOperation; } });
@@ -323,7 +318,6 @@ exports.resourceOperations = {
     Endpoints: Endpoints_1.executeEndpointsOperation,
     Events: Events_1.executeEventsOperation,
     General: General_1.executeGeneralOperation,
-    Home: Home_1.executeHomeOperation,
     IntegrationLogs: IntegrationLogs_1.executeIntegrationLogsOperation,
     Integrations: Integrations_1.executeIntegrationsOperation,
     InvoiceTemplate: InvoiceTemplate_1.executeInvoiceTemplateOperation,

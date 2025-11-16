@@ -2,10 +2,6 @@ import { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 
 /**
  * Execute Service Files operations
- *
- * Binary uploads are handled by the main node file (Billingboothone.node.ts)
- * which detects the binaryPropertyName parameter and automatically handles
- * multipart/form-data encoding.
  */
 export async function executeServiceFilesOperation(
     this: IExecuteFunctions,

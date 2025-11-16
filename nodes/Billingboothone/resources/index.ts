@@ -33,7 +33,6 @@ import { EmailSettingsFields, executeEmailSettingsOperation } from './EmailSetti
 import { EndpointsFields, executeEndpointsOperation } from './Endpoints';
 import { EventsFields, executeEventsOperation } from './Events';
 import { GeneralFields, executeGeneralOperation } from './General';
-import { HomeFields, executeHomeOperation } from './Home';
 import { IntegrationLogsFields, executeIntegrationLogsOperation } from './IntegrationLogs';
 import { IntegrationsFields, executeIntegrationsOperation } from './Integrations';
 import { InvoiceTemplateFields, executeInvoiceTemplateOperation } from './InvoiceTemplate';
@@ -93,7 +92,6 @@ export const allResourceFields: INodeProperties[] = [
   ...EndpointsFields,
   ...EventsFields,
   ...GeneralFields,
-  ...HomeFields,
   ...IntegrationLogsFields,
   ...IntegrationsFields,
   ...InvoiceTemplateFields,
@@ -153,7 +151,6 @@ export { EmailSettingsFields, executeEmailSettingsOperation } from './EmailSetti
 export { EndpointsFields, executeEndpointsOperation } from './Endpoints';
 export { EventsFields, executeEventsOperation } from './Events';
 export { GeneralFields, executeGeneralOperation } from './General';
-export { HomeFields, executeHomeOperation } from './Home';
 export { IntegrationLogsFields, executeIntegrationLogsOperation } from './IntegrationLogs';
 export { IntegrationsFields, executeIntegrationsOperation } from './Integrations';
 export { InvoiceTemplateFields, executeInvoiceTemplateOperation } from './InvoiceTemplate';
@@ -213,7 +210,6 @@ export const resourceOperations = {
   Endpoints: executeEndpointsOperation,
   Events: executeEventsOperation,
   General: executeGeneralOperation,
-  Home: executeHomeOperation,
   IntegrationLogs: executeIntegrationLogsOperation,
   Integrations: executeIntegrationsOperation,
   InvoiceTemplate: executeInvoiceTemplateOperation,

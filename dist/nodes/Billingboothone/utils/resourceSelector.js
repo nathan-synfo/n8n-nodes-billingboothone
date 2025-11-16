@@ -136,10 +136,6 @@ exports.resourceSelector = {
             "value": "General"
         },
         {
-            "name": "Home",
-            "value": "Home"
-        },
-        {
             "name": "Integration Logs",
             "value": "Integration Logs"
         },
@@ -158,10 +154,6 @@ exports.resourceSelector = {
         {
             "name": "Ledgers",
             "value": "Ledgers"
-        },
-        {
-            "name": "Metadata",
-            "value": "Metadata"
         },
         {
             "name": "Metadata",

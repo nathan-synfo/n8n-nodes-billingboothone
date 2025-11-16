@@ -304,50 +304,6 @@ export const ServiceFilesFields: INodeProperties[] = [
     }
   },
   {
-    "displayName": "Binary Property",
-    "name": "binaryPropertyName",
-    "type": "string",
-    "default": "data",
-    "required": true,
-    "description": "Name of the binary property containing the file to upload",
-    "displayOptions": {
-      "show": {
-        "resource": [
-          "Service Files"
-        ],
-        "operation": [
-          "Upload Service File"
-        ]
-      }
-    }
-  },
-  {
-    "displayName": "Supplier ID",
-    "name": "supplier_id",
-    "type": "number",
-    "default": 1,
-    "required": true,
-    "placeholder": "Enter supplier ID",
-    "description": "The supplier ID (required for file upload)",
-    "displayOptions": {
-      "show": {
-        "resource": [
-          "Service Files"
-        ],
-        "operation": [
-          "Upload Service File"
-        ]
-      }
-    },
-    "routing": {
-      "send": {
-        "type": "query",
-        "property": "supplier_id",
-        "value": "={{ $value }}"
-      }
-    }
-  },
-  {
     "displayName": "DELETE /servicefile",
     "name": "operation",
     "type": "notice",
@@ -495,6 +451,74 @@ export const ServiceFilesFields: INodeProperties[] = [
         ],
         "operation": [
           "Redo Multiple Service Files"
+        ]
+      }
+    }
+  },
+  {
+    "displayName": "Binary Property",
+    "name": "binaryPropertyName",
+    "type": "string",
+    "default": "data",
+    "required": true,
+    "description": "Name of the binary property containing the file to upload",
+    "displayOptions": {
+      "show": {
+        "resource": [
+          "Service Files"
+        ],
+        "operation": [
+          "Upload Service File"
+        ]
+      }
+    }
+  },
+  {
+    "displayName": "Supplier Id",
+    "name": "supplier_id",
+    "description": "Supplier",
+    "default": 1,
+    "type": "number",
+    "routing": {
+      "send": {
+        "type": "query",
+        "property": "supplier_id",
+        "value": "={{ $value }}",
+        "propertyInDotNotation": false
+      }
+    },
+    "displayOptions": {
+      "show": {
+        "resource": [
+          "Service Files"
+        ],
+        "operation": [
+          "Upload Service File"
+        ]
+      }
+    }
+  },
+  {
+    "displayName": "Is Reconciliation",
+    "name": "isReconciliation",
+    "description": "IsReconciliation",
+    "default": true,
+    "type": "boolean",
+    "routing": {
+      "send": {
+        "type": "query",
+        "property": "isReconciliation",
+        "value": "={{ $value }}",
+        "propertyInDotNotation": false
+      }
+    },
+    "displayOptions": {
+      "show": {
+        "resource": [
+          "Service Files"
+        ],
+        "operation": [
+          "Upload Service File"
         ]
       }
     }
@@ -1262,40 +1286,6 @@ export const ServiceFilesFields: INodeProperties[] = [
           "send": {
             "type": "query",
             "property": "sort",
-            "value": "={{ $value }}",
-            "propertyInDotNotation": false
-          }
-        }
-      }
-    ]
-  },
-  {
-    "displayName": "Additional Fields",
-    "name": "options",
-    "type": "collection",
-    "placeholder": "Add Field",
-    "default": {},
-    "displayOptions": {
-      "show": {
-        "resource": [
-          "Service Files"
-        ],
-        "operation": [
-          "Upload Service File"
-        ]
-      }
-    },
-    "options": [
-      {
-        "displayName": "Is Reconciliation",
-        "name": "isReconciliation",
-        "description": "IsReconciliation",
-        "default": true,
-        "type": "boolean",
-        "routing": {
-          "send": {
-            "type": "query",
-            "property": "isReconciliation",
             "value": "={{ $value }}",
             "propertyInDotNotation": false
           }

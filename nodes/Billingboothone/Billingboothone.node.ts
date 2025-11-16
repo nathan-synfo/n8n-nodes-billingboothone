@@ -205,7 +205,7 @@ export class Billingboothone implements INodeType {
 					requestOptions.body = body;
 				}
 
-				// Debug logging
+				/* Optional Debug logging for binary uploads
 				this.logger.info('=== REQUEST DEBUG ===');
 				this.logger.info(`Method: ${method}`);
 				this.logger.info(`URL: ${requestOptions.url}`);
@@ -217,6 +217,7 @@ export class Billingboothone implements INodeType {
 					this.logger.info(`Body: ${JSON.stringify(requestOptions.body)}`);
 				}
 				this.logger.info('====================');
+				*/
 
 				const responseData = await this.helpers.httpRequest(requestOptions);
 
