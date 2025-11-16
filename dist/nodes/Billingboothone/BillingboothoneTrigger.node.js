@@ -5,7 +5,7 @@ const webhookHelpers_1 = require("./utils/webhooks/webhookHelpers");
 class BillingboothoneTrigger {
     constructor() {
         this.description = {
-            displayName: 'Billing Booth One Webhook',
+            displayName: 'Billing Booth One Trigger',
             name: 'billingboothoneTrigger',
             icon: 'file:billingboothone.svg',
             group: ['trigger'],
@@ -13,7 +13,7 @@ class BillingboothoneTrigger {
             subtitle: 'On Webhook Event',
             description: 'Starts the workflow when BillingBoothOne events occur',
             defaults: {
-                name: 'Billing Booth One Webhook',
+                name: 'Billing Booth One Trigger',
             },
             inputs: [],
             outputs: ['main'],

@@ -14,7 +14,6 @@ export interface WebhookStaticData {
 }
 export interface WebhookEndpointCreatePayload {
     url: string;
-    secret: string;
     subscription_invoices: boolean;
     subscription_payments: boolean;
     subscription_mandates: boolean;
@@ -27,7 +26,7 @@ export interface WebhookEndpointCreatePayload {
 export interface WebhookEndpointResponse {
     id: number;
     url: string;
-    secret: string;
+    secret?: string;
     subscription_invoices: boolean;
     subscription_payments: boolean;
     subscription_mandates: boolean;

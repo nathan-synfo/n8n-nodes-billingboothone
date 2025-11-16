@@ -179,13 +179,14 @@ This node does **not** support the 2FA authentication method.
 
 ### Webhook Trigger
 
-The **Billing Booth One Webhook** node allows your workflows to start automatically when events occur in Billing Booth One.
+The **Billing Booth One** node allows your workflows to start automatically when events occur in Billing Booth One.
 
 #### Setting Up a Webhook Trigger
 
-1. Add the **Billing Booth One Webhook** node to your workflow
-2. Select your Billing Booth One API credentials
-3. Choose which **Events** to subscribe to:
+1. Add the **Billing Booth One** node as a trigger on your workflow.
+2. Under triggers, select **Billing Booth One Trigger**
+3. Select your Billing Booth One API credentials
+4. Choose which **Events** to subscribe to:
    - **Invoices** - Trigger on invoice events (created, updated, sent, etc.)
    - **Payments** - Trigger on payment events (received, failed, etc.)
    - **Mandates** - Trigger on mandate events (created, cancelled, etc.)
@@ -193,7 +194,9 @@ The **Billing Booth One Webhook** node allows your workflows to start automatica
    - **Ledger** - Trigger on ledger events
    - **Audit** - Trigger on audit events
    - **Credit Notes** - Trigger on credit note events
-4. Activate your workflow
+5. You can execute the workflow to test events are being handled correctly
+6. Activate your workflow
+7. You can trigger test events using the **Send Test Event** action from another workflow.
 
 When you activate the workflow, the trigger node will:
 - Automatically register a webhook endpoint with Billing Booth One
