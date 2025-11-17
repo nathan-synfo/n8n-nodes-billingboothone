@@ -231,6 +231,26 @@ npm run build        # Build the node
 
 ## Version History
 
+### 0.2.6
+
+- Bump version for README
+
+### 0.2.5
+
+- Fix node name
+
+### 0.2.4
+
+- Resolve circular response issue
+
+### 0.2.3
+
+- Fix issue with Webhooks, update README
+
+### 0.2.2
+
+- Minor bug fixes
+
 ### 0.2.1
 
 - Update Webhook Trigger node name

@@ -7,15 +7,15 @@ const utils_1 = require("./utils");
 class Billingboothone {
     constructor() {
         this.description = {
-            displayName: 'Billing Booth One Dev',
-            name: 'billingboothonedev',
+            displayName: 'Billing Booth One',
+            name: 'billingboothone',
             icon: 'file:billingboothone.svg',
             group: ['transform'],
             version: 1,
             subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-            description: 'DEV VERSION - Interact with Billing Booth One API',
+            description: 'Interact with Billing Booth One API',
             defaults: {
-                name: 'Billing Booth One Dev',
+                name: 'Billing Booth One',
             },
             inputs: ['main'],
             outputs: ['main'],
