@@ -7,15 +7,15 @@ const utils_1 = require("./utils");
 class Billingboothone {
     constructor() {
         this.description = {
-            displayName: 'Billing Booth One',
-            name: 'billingboothone',
+            displayName: 'Billing Booth One Dev',
+            name: 'billingboothonedev',
             icon: 'file:billingboothone.svg',
             group: ['transform'],
             version: 1,
             subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-            description: 'Interact with Billing Booth One API',
+            description: 'DEV VERSION - Interact with Billing Booth One API',
             defaults: {
-                name: 'Billing Booth One',
+                name: 'Billing Booth One Dev',
             },
             inputs: ['main'],
             outputs: ['main'],
@@ -152,21 +152,64 @@ class Billingboothone {
                     requestOptions.body = body;
                 }
                 const responseData = await this.helpers.httpRequest(requestOptions);
-                const jsonData = typeof responseData === 'object' ? responseData : { data: responseData };
+                let jsonData;
+                if (responseData === null || responseData === undefined) {
+                    jsonData = {};
+                }
+                else if (typeof responseData === 'object') {
+                    if (Array.isArray(responseData) || responseData.constructor === Object) {
+                        jsonData = responseData;
+                    }
+                    else {
+                        jsonData = {
+                            data: String(responseData),
+                        };
+                    }
+                }
+                else {
+                    jsonData = { data: responseData };
+                }
                 returnData.push({
                     json: jsonData,
                 });
             }
             catch (error) {
+                let errorMessage = 'Unknown error occurred';
+                let errorDetails = {};
+                if (error instanceof Error) {
+                    errorMessage = error.message;
+                    errorDetails = {
+                        name: error.name,
+                        message: error.message,
+                    };
+                    if (error.stack) {
+                        errorDetails.stack = error.stack;
+                    }
+                }
+                else if (typeof error === 'object' && error !== null) {
+                    try {
+                        errorMessage = JSON.stringify(error);
+                        errorDetails = { error };
+                    }
+                    catch {
+                        errorMessage = String(error);
+                        errorDetails = { error: errorMessage };
+                    }
+                }
+                else {
+                    errorMessage = String(error);
+                    errorDetails = { error: errorMessage };
+                }
                 if (this.continueOnFail()) {
                     returnData.push({
                         json: {
-                            error: error.message,
+                            error: errorMessage,
+                            ...errorDetails,
                         },
                     });
                     continue;
                 }
-                throw error;
+                throw new n8n_workflow_1.NodeOperationError(this.getNode(), errorMessage);
             }
         }
         return [returnData];

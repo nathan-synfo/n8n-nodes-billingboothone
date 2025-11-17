@@ -13,15 +13,15 @@ import { getAccessToken, cleanBaseUrl, resourceSelector, buildMultipartFormData 
 
 export class Billingboothone implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Billing Booth One',
-		name: 'billingboothone',
+		displayName: 'Billing Booth One Dev',
+		name: 'billingboothonedev',
 		icon: 'file:billingboothone.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with Billing Booth One API',
+		description: 'DEV VERSION - Interact with Billing Booth One API',
 		defaults: {
-			name: 'Billing Booth One',
+			name: 'Billing Booth One Dev',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
@@ -61,7 +61,7 @@ export class Billingboothone implements INodeType {
 				let operationDef: unknown = null;
 				for (const prop of allResourceFields) {
 					if (prop.name === 'operation' &&
-					    prop.displayOptions?.show?.resource?.[0] === resource) {
+						prop.displayOptions?.show?.resource?.[0] === resource) {
 						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						const matchingOp = prop.options?.find((opt: any) => opt.value === operation);
 						if (matchingOp) {
@@ -215,22 +215,67 @@ export class Billingboothone implements INodeType {
 
 				const responseData = await this.helpers.httpRequest(requestOptions);
 
-				// Ensure we only return the JSON data, not the full response object
-				const jsonData = typeof responseData === 'object' ? responseData : { data: responseData };
+				let jsonData: IDataObject;
+
+				if (responseData === null || responseData === undefined) {
+					jsonData = {};
+				} else if (typeof responseData === 'object') {
+					// Check if it's a plain object or array (not a complex HTTP object)
+					if (Array.isArray(responseData) || responseData.constructor === Object) {
+						jsonData = responseData as IDataObject;
+					} else {
+						// If it's a complex object (like HTTP response), try to extract the data
+						jsonData = {
+							data: String(responseData),
+						};
+					}
+				} else {
+					jsonData = { data: responseData };
+				}
 
 				returnData.push({
 					json: jsonData,
 				});
 			} catch (error) {
+				// Enhanced error handling to avoid circular references
+				let errorMessage = 'Unknown error occurred';
+				let errorDetails: IDataObject = {};
+
+				if (error instanceof Error) {
+					errorMessage = error.message;
+					errorDetails = {
+						name: error.name,
+						message: error.message,
+					};
+
+					// Safely add stack trace if available
+					if (error.stack) {
+						errorDetails.stack = error.stack;
+					}
+				} else if (typeof error === 'object' && error !== null) {
+					// Try to extract useful error information without circular refs
+					try {
+						errorMessage = JSON.stringify(error);
+						errorDetails = { error };
+					} catch {
+						errorMessage = String(error);
+						errorDetails = { error: errorMessage };
+					}
+				} else {
+					errorMessage = String(error);
+					errorDetails = { error: errorMessage };
+				}
+
 				if (this.continueOnFail()) {
 					returnData.push({
 						json: {
-							error: (error as Error).message,
+							error: errorMessage,
+							...errorDetails,
 						},
 					});
 					continue;
 				}
-				throw error;
+				throw new NodeOperationError(this.getNode(), errorMessage);
 			}
 		}
 
