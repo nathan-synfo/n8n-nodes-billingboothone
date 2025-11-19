@@ -4,6 +4,7 @@ exports.Billingboothone = void 0;
 const n8n_workflow_1 = require("n8n-workflow");
 const resources_1 = require("./resources");
 const utils_1 = require("./utils");
+const loadOptions_1 = require("./loadOptions");
 class Billingboothone {
     constructor() {
         this.description = {
@@ -31,9 +32,10 @@ class Billingboothone {
             ],
             usableAsTool: true,
         };
+        this.methods = loadOptions_1.loadOptionsMethods;
     }
     async execute() {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t;
         const items = this.getInputData();
         const returnData = [];
         const accessToken = await (0, utils_1.getAccessToken)(this);
@@ -86,6 +88,9 @@ class Billingboothone {
                         qs[key] = value;
                     }
                 }
+                if (resource === 'CDR' && operation === 'Cdr Export' && !qs.format) {
+                    qs.format = 'csv';
+                }
                 let isBinaryUpload = false;
                 let binaryPropertyName = '';
                 try {
@@ -108,11 +113,29 @@ class Billingboothone {
                 }
                 catch {
                 }
-                if (['POST'].includes(method) && !isBinaryUpload) {
+                if (['POST', 'PUT', 'PATCH'].includes(method) && !isBinaryUpload) {
+                    body = {};
+                    for (const prop of resources_1.allResourceFields) {
+                        if (((_h = (_g = (_f = prop.displayOptions) === null || _f === void 0 ? void 0 : _f.show) === null || _g === void 0 ? void 0 : _g.resource) === null || _h === void 0 ? void 0 : _h[0]) === resource &&
+                            ((_l = (_k = (_j = prop.displayOptions) === null || _j === void 0 ? void 0 : _j.show) === null || _k === void 0 ? void 0 : _k.operation) === null || _l === void 0 ? void 0 : _l[0]) === operation) {
+                            const routing = prop.routing;
+                            if (((_m = routing === null || routing === void 0 ? void 0 : routing.send) === null || _m === void 0 ? void 0 : _m.type) === 'body') {
+                                try {
+                                    const paramValue = this.getNodeParameter(prop.name, i);
+                                    if (paramValue !== undefined && paramValue !== null && paramValue !== '') {
+                                        const propertyName = routing.send.property || prop.name;
+                                        body[propertyName] = paramValue;
+                                    }
+                                }
+                                catch {
+                                }
+                            }
+                        }
+                    }
                     try {
-                        const bodyFields = this.getNodeParameter('body', i, {});
-                        if (Object.keys(bodyFields).length > 0) {
-                            body = bodyFields;
+                        const bodyOptions = this.getNodeParameter('bodyOptions', i, {});
+                        if (bodyOptions && Object.keys(bodyOptions).length > 0) {
+                            body = { ...body, ...bodyOptions };
                         }
                     }
                     catch {
@@ -150,6 +173,22 @@ class Billingboothone {
                 }
                 if (body && Object.keys(body).length > 0 && !isBinaryUpload) {
                     requestOptions.body = body;
+                }
+                const allParams = {};
+                try {
+                    for (const prop of resources_1.allResourceFields) {
+                        if (((_q = (_p = (_o = prop.displayOptions) === null || _o === void 0 ? void 0 : _o.show) === null || _p === void 0 ? void 0 : _p.resource) === null || _q === void 0 ? void 0 : _q[0]) === resource &&
+                            ((_t = (_s = (_r = prop.displayOptions) === null || _r === void 0 ? void 0 : _r.show) === null || _s === void 0 ? void 0 : _s.operation) === null || _t === void 0 ? void 0 : _t[0]) === operation) {
+                            try {
+                                const paramValue = this.getNodeParameter(prop.name, i);
+                                allParams[prop.name] = paramValue;
+                            }
+                            catch {
+                            }
+                        }
+                    }
+                }
+                catch (error) {
                 }
                 const responseData = await this.helpers.httpRequest(requestOptions);
                 let jsonData;

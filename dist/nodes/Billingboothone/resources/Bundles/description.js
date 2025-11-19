@@ -693,12 +693,15 @@ exports.BundlesFields = [
         }
     },
     {
-        "displayName": "Bundle Id",
+        "displayName": "Bundle",
         "name": "bundleId",
         "required": true,
-        "description": "Bundle unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Select the bundle",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getBundles"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -711,12 +714,15 @@ exports.BundlesFields = [
         }
     },
     {
-        "displayName": "Bundle Id",
+        "displayName": "Bundle",
         "name": "bundleId",
         "required": true,
-        "description": "Bundle unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Select the bundle",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getBundles"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -729,11 +735,15 @@ exports.BundlesFields = [
         }
     },
     {
-        "displayName": "Bundle Id",
+        "displayName": "Bundle",
         "name": "bundleId",
         "required": true,
+        "description": "Select the bundle",
         "default": "",
-        "type": "string",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getBundles"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -746,12 +756,15 @@ exports.BundlesFields = [
         }
     },
     {
-        "displayName": "Bundle Id",
+        "displayName": "Bundle",
         "name": "bundleId",
         "required": true,
-        "description": "Bundle unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Select the bundle",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getBundles"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -782,12 +795,15 @@ exports.BundlesFields = [
         }
     },
     {
-        "displayName": "Bundle Id",
+        "displayName": "Bundle",
         "name": "bundleId",
         "required": true,
-        "description": "Bundle unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Select the bundle",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getBundles"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -836,11 +852,15 @@ exports.BundlesFields = [
         }
     },
     {
-        "displayName": "Bundle Id",
+        "displayName": "Bundle",
         "name": "bundleId",
         "required": true,
+        "description": "Select the bundle",
         "default": "",
-        "type": "string",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getBundles"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -856,9 +876,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -874,9 +897,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -892,9 +918,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -910,9 +939,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -928,9 +960,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -964,9 +999,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -1000,9 +1038,12 @@ exports.BundlesFields = [
         "displayName": "Customer Id",
         "name": "customerId",
         "required": true,
-        "description": "Customer unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [

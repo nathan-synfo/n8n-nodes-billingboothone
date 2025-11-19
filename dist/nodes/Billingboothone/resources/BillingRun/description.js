@@ -400,32 +400,38 @@ exports.BillingRunFields = [
                 }
             },
             {
-                "displayName": "Customer Ids",
+                "displayName": "Customers",
                 "name": "customer_ids",
-                "type": "json",
-                "default": "[\n  null\n]",
+                "type": "multiOptions",
+                "default": [],
                 "description": "A list of specific customers to bill. A billing run can either bill a customer group, or a list of specific customers.",
+                "typeOptions": {
+                    "loadOptionsMethod": "getCustomers"
+                },
                 "routing": {
                     "send": {
                         "property": "customer_ids",
                         "propertyInDotNotation": false,
                         "type": "body",
-                        "value": "={{ JSON.parse($value) }}"
+                        "value": "={{ $value }}"
                     }
                 }
             },
             {
-                "displayName": "Exclude Customer Ids",
+                "displayName": "Exclude Customers",
                 "name": "exclude_customer_ids",
-                "type": "json",
-                "default": "[\n  null\n]",
+                "type": "multiOptions",
+                "default": [],
                 "description": "An explicit list of customers to exclude from the billing run",
+                "typeOptions": {
+                    "loadOptionsMethod": "getCustomers"
+                },
                 "routing": {
                     "send": {
                         "property": "exclude_customer_ids",
                         "propertyInDotNotation": false,
                         "type": "body",
-                        "value": "={{ JSON.parse($value) }}"
+                        "value": "={{ $value }}"
                     }
                 }
             },
@@ -616,14 +622,14 @@ exports.BillingRunFields = [
             {
                 "displayName": "From",
                 "name": "from",
-                "description": "Filter by `from` date",
+                "description": "From date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "from",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -631,14 +637,14 @@ exports.BillingRunFields = [
             {
                 "displayName": "To",
                 "name": "to",
-                "description": "Filter by `to` date",
+                "description": "To date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "to",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -813,11 +819,14 @@ exports.BillingRunFields = [
                 }
             },
             {
-                "displayName": "Customer Ids",
+                "displayName": "Customers",
                 "name": "customer_ids",
                 "description": "A list of specific customers to bill. A billing run can either bill a customer group, or a list of specific customers.",
-                "default": "[\n  null\n]",
-                "type": "json",
+                "default": [],
+                "type": "multiOptions",
+                "typeOptions": {
+                    "loadOptionsMethod": "getCustomers"
+                },
                 "routing": {
                     "send": {
                         "type": "query",
@@ -997,11 +1006,14 @@ exports.BillingRunFields = [
                 }
             },
             {
-                "displayName": "Customer Ids",
+                "displayName": "Customers",
                 "name": "customer_ids",
                 "description": "A list of specific customers to bill. A billing run can either bill a customer group, or a list of specific customers.",
-                "default": "[\n  null\n]",
-                "type": "json",
+                "default": [],
+                "type": "multiOptions",
+                "typeOptions": {
+                    "loadOptionsMethod": "getCustomers"
+                },
                 "routing": {
                     "send": {
                         "type": "query",

@@ -10,6 +10,7 @@ import {
 } from 'n8n-workflow';
 import { allResourceFields } from './resources';
 import { getAccessToken, cleanBaseUrl, resourceSelector, buildMultipartFormData } from './utils';
+import { loadOptionsMethods } from './loadOptions';
 
 export class Billingboothone implements INodeType {
 	description: INodeTypeDescription = {
@@ -38,6 +39,8 @@ export class Billingboothone implements INodeType {
 		usableAsTool: true,
 	};
 
+	methods = loadOptionsMethods;
+
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
@@ -61,7 +64,7 @@ export class Billingboothone implements INodeType {
 				let operationDef: unknown = null;
 				for (const prop of allResourceFields) {
 					if (prop.name === 'operation' &&
-						prop.displayOptions?.show?.resource?.[0] === resource) {
+					    prop.displayOptions?.show?.resource?.[0] === resource) {
 						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						const matchingOp = prop.options?.find((opt: any) => opt.value === operation);
 						if (matchingOp) {
@@ -113,6 +116,11 @@ export class Billingboothone implements INodeType {
 					}
 				}
 
+				// Special handling for CDR Export: default format to 'csv' if not provided
+				if (resource === 'CDR' && operation === 'Cdr Export' && !qs.format) {
+					qs.format = 'csv';
+				}
+
 				// Check if this is a file upload operation
 				let isBinaryUpload = false;
 				let binaryPropertyName = '';
@@ -143,15 +151,40 @@ export class Billingboothone implements INodeType {
 					// No binary property field for this operation
 				}
 
-				// Handle request body for POST operations (not needed for binary uploads)
-				if (['POST'].includes(method) && !isBinaryUpload) {
+				// Handle request body for POST/PUT/PATCH operations (not needed for binary uploads)
+				if (['POST', 'PUT', 'PATCH'].includes(method) && !isBinaryUpload) {
+					body = {};
+
+					// Collect all fields that should be sent in the body based on routing configuration
+					for (const prop of allResourceFields) {
+						// Check if this property is for the current resource/operation
+						if (prop.displayOptions?.show?.resource?.[0] === resource &&
+						    prop.displayOptions?.show?.operation?.[0] === operation) {
+
+							// Check if this field has routing config that sends to body
+							const routing = (prop as any).routing;
+							if (routing?.send?.type === 'body') {
+								try {
+									const paramValue = this.getNodeParameter(prop.name, i);
+									if (paramValue !== undefined && paramValue !== null && paramValue !== '') {
+										const propertyName = routing.send.property || prop.name;
+										body[propertyName] = paramValue;
+									}
+								} catch {
+									// Parameter not set or optional
+								}
+							}
+						}
+					}
+
+					// Also check for bodyOptions collection (for remaining optional fields)
 					try {
-						const bodyFields = this.getNodeParameter('body', i, {}) as IDataObject;
-						if (Object.keys(bodyFields).length > 0) {
-							body = bodyFields;
+						const bodyOptions = this.getNodeParameter('bodyOptions', i, {}) as IDataObject;
+						if (bodyOptions && Object.keys(bodyOptions).length > 0) {
+							body = { ...body, ...bodyOptions };
 						}
 					} catch {
-						// No body fields for this operation
+						// No bodyOptions collection for this operation
 					}
 				}
 
@@ -199,22 +232,27 @@ export class Billingboothone implements INodeType {
 					requestOptions.body = body;
 				}
 
-				/* Optional Debug logging for binary uploads
-				this.logger.info('=== REQUEST DEBUG ===');
-				this.logger.info(`Method: ${method}`);
-				this.logger.info(`URL: ${requestOptions.url}`);
-				this.logger.info(`Query params: ${JSON.stringify(qs)}`);
-				this.logger.info(`Headers: ${JSON.stringify(requestOptions.headers)}`);
-				this.logger.info(`Is binary upload: ${isBinaryUpload}`);
-				this.logger.info(`Body type: ${typeof requestOptions.body}`);
-				if (!isBinaryUpload && requestOptions.body) {
-					this.logger.info(`Body: ${JSON.stringify(requestOptions.body)}`);
+				// Log all node parameters
+				const allParams: IDataObject = {};
+				try {
+					// Get all parameter names from the properties
+					for (const prop of allResourceFields) {
+						if (prop.displayOptions?.show?.resource?.[0] === resource &&
+						    prop.displayOptions?.show?.operation?.[0] === operation) {
+							try {
+								const paramValue = this.getNodeParameter(prop.name, i);
+								allParams[prop.name] = paramValue;
+							} catch {
+								// Parameter not available for this operation
+							}
+						}
+					}
+				} catch (error) {
 				}
-				this.logger.info('====================');
-				*/
 
 				const responseData = await this.helpers.httpRequest(requestOptions);
 
+				// Safely extract JSON data, avoiding circular references
 				let jsonData: IDataObject;
 
 				if (responseData === null || responseData === undefined) {
@@ -225,6 +263,7 @@ export class Billingboothone implements INodeType {
 						jsonData = responseData as IDataObject;
 					} else {
 						// If it's a complex object (like HTTP response), try to extract the data
+						// This handles cases where the full response object is returned
 						jsonData = {
 							data: String(responseData),
 						};

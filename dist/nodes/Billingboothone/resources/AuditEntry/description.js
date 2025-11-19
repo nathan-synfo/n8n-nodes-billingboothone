@@ -114,14 +114,14 @@ exports.AuditEntryFields = [
             {
                 "displayName": "To",
                 "name": "to",
-                "description": "Filter by `to` date",
+                "description": "To date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "to",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -287,11 +287,14 @@ exports.AuditEntryFields = [
                 }
             },
             {
-                "displayName": "Customer Id",
+                "displayName": "Customer",
                 "name": "customer_id",
-                "description": "Filter by `customer_id`",
-                "default": 0,
-                "type": "number",
+                "description": "Filter by customer",
+                "default": "",
+                "type": "options",
+                "typeOptions": {
+                    "loadOptionsMethod": "getCustomers"
+                },
                 "routing": {
                     "send": {
                         "type": "query",

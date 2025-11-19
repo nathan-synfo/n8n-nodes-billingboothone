@@ -55,8 +55,8 @@ export const CLITypesFields: INodeProperties[] = [
         }
       },
       {
-        "name": "Get C Li Type",
-        "value": "Get C Li Type",
+        "name": "Get CLI Type",
+        "value": "Get CLI Type",
         "action": "Get a single type",
         "description": "Retrieves a single CLI type.",
         "routing": {
@@ -220,7 +220,7 @@ export const CLITypesFields: INodeProperties[] = [
           "CLI Types"
         ],
         "operation": [
-          "Get C Li Type"
+          "Get CLI Type"
         ]
       }
     }

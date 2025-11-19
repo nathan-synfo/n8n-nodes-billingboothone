@@ -212,7 +212,7 @@ export const InvoiceTemplateFields: INodeProperties[] = [
     "name": "organisationId",
     "required": true,
     "description": "Unique identifier",
-    "default": 0,
+    "default": 1,
     "type": "number",
     "displayOptions": {
       "show": {
@@ -230,7 +230,7 @@ export const InvoiceTemplateFields: INodeProperties[] = [
     "name": "organisationId",
     "required": true,
     "description": "Unique identifier",
-    "default": 0,
+    "default": 1,
     "type": "number",
     "displayOptions": {
       "show": {
@@ -248,7 +248,7 @@ export const InvoiceTemplateFields: INodeProperties[] = [
     "name": "organisationId",
     "required": true,
     "description": "Unique identifier",
-    "default": 0,
+    "default": 1,
     "type": "number",
     "displayOptions": {
       "show": {
@@ -266,7 +266,7 @@ export const InvoiceTemplateFields: INodeProperties[] = [
     "name": "organisationId",
     "required": true,
     "description": "Unique identifier",
-    "default": 0,
+    "default": 1,
     "type": "number",
     "displayOptions": {
       "show": {
@@ -284,7 +284,7 @@ export const InvoiceTemplateFields: INodeProperties[] = [
     "name": "organisationId",
     "required": true,
     "description": "Unique identifier",
-    "default": 0,
+    "default": 1,
     "type": "number",
     "displayOptions": {
       "show": {
@@ -302,7 +302,7 @@ export const InvoiceTemplateFields: INodeProperties[] = [
     "name": "organisationId",
     "required": true,
     "description": "Unique identifier",
-    "default": 0,
+    "default": 1,
     "type": "number",
     "displayOptions": {
       "show": {

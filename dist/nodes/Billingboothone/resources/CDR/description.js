@@ -408,12 +408,15 @@ exports.CDRFields = [
         }
     },
     {
-        "displayName": "Customer Id",
+        "displayName": "Customer",
         "name": "customerId",
         "required": true,
-        "description": "Unique identifier",
-        "default": 0,
-        "type": "number",
+        "description": "Select the customer",
+        "default": "",
+        "type": "options",
+        "typeOptions": {
+            "loadOptionsMethod": "getCustomers"
+        },
         "displayOptions": {
             "show": {
                 "resource": [
@@ -496,30 +499,30 @@ exports.CDRFields = [
             {
                 "displayName": "From",
                 "name": "from",
-                "type": "string",
+                "description": "From date/time",
                 "default": "",
-                "description": "From date/time period",
+                "type": "dateTime",
                 "routing": {
                     "send": {
+                        "type": "query",
                         "property": "from",
-                        "propertyInDotNotation": false,
-                        "type": "body",
-                        "value": "={{ $value }}"
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
+                        "propertyInDotNotation": false
                     }
                 }
             },
             {
                 "displayName": "To",
                 "name": "to",
-                "type": "string",
+                "description": "To date/time",
                 "default": "",
-                "description": "To date/time period",
+                "type": "dateTime",
                 "routing": {
                     "send": {
+                        "type": "query",
                         "property": "to",
-                        "propertyInDotNotation": false,
-                        "type": "body",
-                        "value": "={{ $value }}"
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
+                        "propertyInDotNotation": false
                     }
                 }
             },
@@ -635,14 +638,14 @@ exports.CDRFields = [
             {
                 "displayName": "From",
                 "name": "from",
-                "description": "From date",
+                "description": "From date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "from",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -650,14 +653,14 @@ exports.CDRFields = [
             {
                 "displayName": "To",
                 "name": "to",
-                "description": "To date",
+                "description": "To date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "to",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -770,9 +773,23 @@ exports.CDRFields = [
             {
                 "displayName": "Format",
                 "name": "format",
-                "description": "Cdr output format",
-                "default": "",
-                "type": "string",
+                "description": "CDR output format",
+                "default": "csv",
+                "type": "options",
+                "options": [
+                    {
+                        "name": "CSV",
+                        "value": "csv"
+                    },
+                    {
+                        "name": "CDR",
+                        "value": "cdr"
+                    },
+                    {
+                        "name": "PDF",
+                        "value": "pdf"
+                    }
+                ],
                 "routing": {
                     "send": {
                         "type": "query",
@@ -785,14 +802,14 @@ exports.CDRFields = [
             {
                 "displayName": "From",
                 "name": "from",
-                "description": "From date",
+                "description": "From date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "from",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -800,14 +817,14 @@ exports.CDRFields = [
             {
                 "displayName": "To",
                 "name": "to",
-                "description": "To date",
+                "description": "To date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "to",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -922,11 +939,14 @@ exports.CDRFields = [
                 }
             },
             {
-                "displayName": "Customer Id",
+                "displayName": "Customer",
                 "name": "customer_id",
-                "description": "Filter by `customer_id`",
-                "default": 0,
-                "type": "number",
+                "description": "Filter by customer",
+                "default": "",
+                "type": "options",
+                "typeOptions": {
+                    "loadOptionsMethod": "getCustomers"
+                },
                 "routing": {
                     "send": {
                         "type": "query",
@@ -969,14 +989,14 @@ exports.CDRFields = [
             {
                 "displayName": "From",
                 "name": "from",
-                "description": "Filter by `from`",
+                "description": "From date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "from",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }
@@ -984,14 +1004,14 @@ exports.CDRFields = [
             {
                 "displayName": "To",
                 "name": "to",
-                "description": "Filter by `to`",
+                "description": "To date/time",
                 "default": "",
-                "type": "string",
+                "type": "dateTime",
                 "routing": {
                     "send": {
                         "type": "query",
                         "property": "to",
-                        "value": "={{ $value }}",
+                        "value": "={{ $value ? new Date($value).toISOString() : '' }}",
                         "propertyInDotNotation": false
                     }
                 }

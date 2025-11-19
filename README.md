@@ -4,6 +4,10 @@ This is an n8n community node for [Billing Booth One](https://www.billingbooth.c
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
+## Overview
+
+![Overview](./overview.gif)
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -230,6 +234,12 @@ npm run build        # Build the node
 [MIT](LICENSE.md)
 
 ## Version History
+
+### 0.3.0
+
+- Implemented loadoptions for customers and bundles (allows selecting customer or bundle by name instead of CustomerId or BundleId)
+- Updated OrganisationId to default to 1 instead of 0
+- Update From and To query params to use date picker
 
 ### 0.2.6
 
